@@ -1,0 +1,26 @@
+-- NOMBRE TABLA : M7_Prueba_BancoSolar_Dia15
+DROP TABLE IF EXISTS TRANSFERENCIAS;
+DROP TABLE IF EXISTS USUARIOS;
+
+CREATE TABLE USUARIOS(
+	id SERIAL PRIMARY KEY,
+	nombre VARCHAR(50),
+	balance FLOAT CHECK (balance >= 0)	
+); 
+
+CREATE TABLE TRANSFERENCIAS(
+	id SERIAL PRIMARY KEY,
+	emisor INT,
+	receptor INT,
+	monto FLOAT,
+	fecha TIMESTAMP,
+FOREIGN KEY (emisor) REFERENCES usuarios(id) ON DELETE CASCADE,
+FOREIGN KEY (receptor) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+insert into usuarios (nombre,balance) values
+('Fredo Corleone',50000),
+('Michael Corleone',100000)
+;
+SELECT * FROM USUARIOS;
+SELECT * FROM TRANSFERENCIAS;
